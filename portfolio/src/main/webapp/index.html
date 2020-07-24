@@ -8,11 +8,47 @@
   </head>
   <body>
     <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
+      <h1>Portfolio of Darya Baranouskaya</h1>
+      <p><b>Github:</b><a href="https://github.com/darya-baranovskaya" target="_blank"> https://github.com/darya-baranovskaya</a></p>
+      <p><b>LinkedIn:</b><a href= "https://linkedin.com/in/darya-baranouskaya-088aba195" target="_blank"> https://linkedin.com/in/darya-baranouskaya-088aba195</a></p>
+      <hr>
+      <p><h3>Projects:</h3></p>
+      <ul>
+        <li>Calculator for predicting recurrence of Cushing's desease </li>
+        <li>A research on implementation of frontalization algorithm for face recognition  in Sasung R&D institute</li>
+        <li>Deep learning summer school in Tsinghua University</li>
+      </ul>
+      <!--<p>Click here to get a random message:</p>
       <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+      <div id="greeting-container"></div>-->
+      <!-- The grid: four columns -->
+    </div>
+    <div class="row">
+        <div class="column">
+            <img src="images/image0.jpeg" alt="Nature" onclick="myFunction(this);">
+        </div>
+        <div class="column">
+            <img src="images/image1.jpeg" alt="Snow" onclick="myFunction(this);">
+        </div>
+        <div class="column">
+            <img src="images/image2.jpeg" alt="Mountains" onclick="myFunction(this);">
+        </div>
+        <div class="column">
+            <img src="images/image3.jpeg" alt="Lights" onclick="myFunction(this);">
+        </div>
+    </div>
+
+<!-- The expanding image container -->
+    <div class="container">
+  <!-- Close the image -->
+        <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+
+  <!-- Expanded image -->
+        <img id="expandedImg" style="width:30%">
+
+  <!-- Image text -->
+        <div id="imgtext"></div>
+
     </div>
   </body>
 </html>
