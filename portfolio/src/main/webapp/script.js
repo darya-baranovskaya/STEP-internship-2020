@@ -16,7 +16,6 @@
  * Adds a random greeting to the page.
  */
 function addRandomGreeting() {
-    
   const greetings =
       ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
 
@@ -28,15 +27,10 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
-function myFunction(imgs) {
-  // Get the expanded image
-  var expandImg = document.getElementById("expandedImg");
-  // Get the image text
+function showPicture(imgs) {
+  var expandedImg = document.getElementById("expandedImg");
   var imgText = document.getElementById("imgtext");
-  // Use the same src in the expanded image as the image being clicked on from the grid
-  expandImg.src = imgs.src;
-  // Use the value of the alt attribute of the clickable image as text inside the expanded image
+  expandedImg.src = imgs.src;
   imgText.innerHTML = imgs.alt;
-  // Show the container element (hidden with CSS)
   expandImg.parentElement.style.display = "block";
 }
