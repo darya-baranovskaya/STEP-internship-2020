@@ -90,3 +90,13 @@ a {
   font-size: 35px;
   cursor: pointer;
 }
+
+#hello-button {
+  background-color: rgba(23, 195, 247, 0.466);
+  padding: 15px 32px;
+  font-size: 16px;
+  border: none;
+  color: #1f1d1dc5;
+  text-align: center;
+  border-radius: 8px;
+}
