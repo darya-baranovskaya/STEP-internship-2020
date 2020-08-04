@@ -121,3 +121,14 @@ function createListElement(text) {
   liElement.innerText = text;
   return liElement;
 }
+
+async function formLoad() {
+  fetch('/form').then(response => response.json()).then((jsonStr) => {
+    // stats is an object, not a string, so we have to
+    // reference its fields to create HTML content
+
+    const statsListElement = document.getElementById('form-reply');
+    statsListElement.innerHTML = jsonStr;
+    statsListElement.style.color = rate_value;
+  });
+}
