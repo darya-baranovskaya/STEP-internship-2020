@@ -132,3 +132,12 @@ async function formLoad() {
     statsListElement.style.color = rate_value;
   });
 }
+
+function storeData() {
+  fetch('/store-data').then(response => response.json()).then((tasks) => {
+    const taskListElement = document.getElementById('form-data');
+    tasks.forEach((task) => {
+      taskListElement.appendChild(createTaskElement(task));
+    })
+  });
+}
