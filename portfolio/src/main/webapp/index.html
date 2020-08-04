@@ -19,9 +19,22 @@
         <li>Deep learning summer school in Tsinghua University</li>
       </ul>
       <p>Click here to see a data url:</p>
-      <button onclick="sayHelloUsingAsyncAwait()" id="hello-button">Hello button!</button>
+      <button onclick="getServerStats()" id="hello-button">Hello button!</button>
       <div id="hello-sell"></div>
     </div>
+    <hr>
+
+    <form action="/form" onsubmit = "formLoad()" method="POST">
+      <label for="color" name = "color-choise" id = "color-choise">Chose color you like most<br/></label>
+        <input id = "red" type="radio" name="color" value = "red">red <Br>
+	    <input id = "green" type="radio" name="color" value = "green">green <Br>
+        <input id = "blue" type="radio" name="color" value = "blue">blue <Br>
+      <textarea name="text-input">Hello, World!</textarea>
+      <br/><br/>
+
+      <input type="submit" />
+    </form>
+    <div id="form-reply"></div>
     <hr>
     <div class="row">
         <div class="column">
@@ -50,5 +63,7 @@
         <div id="imgtext"></div>
 
     </div>
+    </hr>
+
   </body>
 </html>

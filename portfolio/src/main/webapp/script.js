@@ -99,3 +99,36 @@ async function sayHelloUsingAsyncAwait() {
   const quote = await response.text();
   document.getElementById('hello-sell').innerText = quote;
 }
+
+function getServerStats() {
+  fetch('/data').then(response => response.json()).then((jsonStr) => {
+    // stats is an object, not a string, so we have to
+    // reference its fields to create HTML content
+
+    const statsListElement = document.getElementById('hello-sell');
+    statsListElement.innerHTML = '';
+    statsListElement.appendChild(
+        createListElement('First string: ' + jsonStr[0]));
+    statsListElement.appendChild(
+        createListElement('Second string: ' + jsonStr[1]));
+    statsListElement.appendChild(
+        createListElement('Third string: ' + jsonStr[2]));
+  });
+}
+
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
+
+async function formLoad() {
+  fetch('/form').then(response => response.json()).then((jsonStr) => {
+    // stats is an object, not a string, so we have to
+    // reference its fields to create HTML content
+
+    const statsListElement = document.getElementById('form-reply');
+    statsListElement.innerHTML = jsonStr;
+    statsListElement.style.color = rate_value;
+  });
+}
