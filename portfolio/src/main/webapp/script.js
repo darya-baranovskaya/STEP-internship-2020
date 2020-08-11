@@ -133,11 +133,98 @@ async function formLoad() {
   });
 }
 
-function storeData() {
+async function storeData() {
   fetch('/store-data').then(response => response.json()).then((tasks) => {
     const taskListElement = document.getElementById('form-data');
     tasks.forEach((task) => {
       taskListElement.appendChild(createTaskElement(task));
     })
   });
+}
+
+function createMap() {
+  const directionsRenderer = new google.maps.DirectionsRenderer();
+  const directionsService = new google.maps.DirectionsService();
+  const map = new google.maps.Map(
+      document.getElementById('map'),
+      {center: {lat: 55.752779, lng: 37.621588},
+      zoom: 14,
+      clickableIcons: true,
+      backgroundColor: "#red"
+      });
+  target = new google.maps.Marker({
+    position: {lat: 55.752779, lng: 37.621588},
+    map,
+    title: "There is me!"
+  });
+  var pos = {lat: 55.752779, lng: 37.621588};
+  infoWindow = new google.maps.InfoWindow;
+  if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+        pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+          };
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+        }, function() {
+            handleLocationError(true, infoWindow, map.getCenter(), map);
+          });
+  } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter(), map);
+  }
+  directionsRenderer.setMap(map);
+  calculateAndDisplayRoute(directionsService, directionsRenderer, target, pos);
+  document.getElementById("mode").addEventListener("change", () => {
+    calculateAndDisplayRoute(directionsService, directionsRenderer, target, pos);
+  });
+}
+
+function calculateAndDisplayRoute(directionsService, directionsRenderer, from, to) {
+  console.log("entered calculateAndD");
+  //console.assert(typeof from.lat == "number");
+  //console.assert(typeof from.lng == "number");
+  const selectedMode = document.getElementById("mode").value;
+  directionsService.route(
+    {
+      origin: {lat: from.position.lat(), lng: from.position.lng() },
+      destination: {lat: to.lat,
+          lng: to.lng},
+      /*
+      // Note that Javascript allows us to access the constant
+      // using square brackets and a string value as its
+      // "property."
+      origin: {
+          lat: 55.752779, lng: 37.621588
+        },
+      destination: {
+          lat: 37.768,
+          lng: -122.511
+      },*/
+
+      travelMode: google.maps.TravelMode[selectedMode]
+    },
+    (response, status) => {
+      if (status == "OK") {
+        directionsRenderer.setDirections(response);
+      } else {
+        window.alert("Directions request failed due to " + status);
+      }
+    }
+  );
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos, map) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?  'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+    infoWindow.open(map);
+}
+
+function storeDataandCreateMap() {
+    createMap();
+    storeData();
 }

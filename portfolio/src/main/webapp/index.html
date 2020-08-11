@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMzLfvWOGTvwbgpzB7YT4_M5nuPcSFMhc"
+    defer
+    ></script>
     <script src="script.js"></script>
   </head>
-  <body onload="storeData()">
+  <body onload="createMap()">
     <div id="content">
       <h1>Portfolio of Darya Baranouskaya</h1>
       <p><b>Github:</b><a href="https://github.com/darya-baranovskaya" target="_blank"> https://github.com/darya-baranovskaya</a></p>
@@ -22,6 +25,19 @@
       <button onclick="getServerStats()" id="hello-button">Hello button!</button>
       <div id="hello-sell"></div>
     </div>
+    <hr>
+      <h3>How to get to me</h3>
+      <div id = "map-path-reply">
+      <div id="floating-panel">
+      <b>Mode of Travel: </b>
+      <select id="mode">
+        <option value="DRIVING">Driving</option>
+        <option value="WALKING">Walking</option>
+        <option value="BICYCLING">Bicycling</option>
+        <option value="TRANSIT">Transit</option>
+      </select>
+      <div id="map"></div>
+      <p>This page shows a Google Map!</p>
     <hr>
 
     <form method="POST" action="/store-data">
